@@ -46,4 +46,5 @@ dependencies {
     implementation(Dependencies.KOTLIN_X_SERIALIZATION)
     implementation(Dependencies.KOTLIN_SERIALIZATION_CONVERTOR)
     implementation(Dependencies.DATA_STORE)
+    api(project(":domain"))
 }
