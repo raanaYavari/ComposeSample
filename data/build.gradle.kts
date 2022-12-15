@@ -1,14 +1,16 @@
 plugins {
+    kotlin("kapt")
+    kotlin("android")
     id("com.android.library")
 }
 
 android {
     namespace = "com.raana.bamacodechallenge.data"
-    compileSdk = 32
+    compileSdk = Config.COMPILE_SDK
 
     defaultConfig {
-        minSdk = 21
-        targetSdk = 32
+        minSdk = Config.MIN_SDK
+        targetSdk = Config.TARGET_SDK
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -30,10 +32,18 @@ android {
 }
 
 dependencies {
+    implementation(Dependencies.ANDROIDX_CORE)
+    implementation(Dependencies.ANDROIDX_APPCOMPACT)
+    implementation(Dependencies.MATERIAL)
+    implementation(Dependencies.HILT_ANDROID)
 
-    implementation("androidx.appcompat:appcompat:1.5.1")
-    implementation("com.google.android.material:material:1.7.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.4")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
+    kapt(Dependencies.HILT_COMPILER)
+    implementation(Dependencies.RETROFIT)
+    implementation(Dependencies.RETROFIT_CONVERTER_SCALARS)
+    implementation(Dependencies.LOGGING_INTERCEPTOR)
+    implementation(Dependencies.COROUTINE_CORE)
+    implementation(Dependencies.COROUTINE_ANDROID)
+    implementation(Dependencies.KOTLIN_X_SERIALIZATION)
+    implementation(Dependencies.KOTLIN_SERIALIZATION_CONVERTOR)
+    implementation(Dependencies.DATA_STORE)
 }

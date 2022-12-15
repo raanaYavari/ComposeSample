@@ -1,6 +1,6 @@
 object Config {
-    const val APP_NAME = "YSC"
-    const val APPLICATION_ID = "com.yeksa.smartcontrol"
+    const val APP_NAME = "Bama Code Challenge"
+    const val APPLICATION_ID = "com.raana.bamacodechallenge"
     const val COMPILE_SDK = 31
     const val MIN_SDK = 23
     const val TARGET_SDK = 31

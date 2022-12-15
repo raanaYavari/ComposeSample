@@ -1,19 +1,20 @@
 plugins {
+    kotlin("kapt")
+    kotlin("android")
     id("com.android.library")
 }
 
 android {
     namespace = "com.raana.bamacodechallenge.domain"
-    compileSdk = 32
+    compileSdk = Config.COMPILE_SDK
 
     defaultConfig {
-        minSdk = 21
-        targetSdk = 32
+        minSdk = Config.MIN_SDK
+        targetSdk = Config.TARGET_SDK
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -31,9 +32,8 @@ android {
 
 dependencies {
 
-    implementation("androidx.appcompat:appcompat:1.5.1")
-    implementation("com.google.android.material:material:1.7.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.4")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
+    implementation(Dependencies.HILT_ANDROID)
+    kapt(Dependencies.HILT_COMPILER)
+    implementation(Dependencies.KOTLIN_X_SERIALIZATION)
+    implementation(Dependencies.COROUTINE_CORE)
 }
