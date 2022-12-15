@@ -15,4 +15,5 @@ dependencyResolutionManagement {
 rootProject.name = "Bama Code Challenge"
 include ':app'
 include ':buildsrc'
-include ':buildsrc'
+include ':data'
+include ':domain'
