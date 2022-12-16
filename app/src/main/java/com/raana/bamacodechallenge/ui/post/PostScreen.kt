@@ -63,6 +63,7 @@ fun PostScreen(
 fun PostItem(post: Post) {
     Column(
         modifier = Modifier
+            .fillMaxWidth()
             .padding(8.dp)
             .background(color = surfaceColor, shape = RoundedCornerShape(4.dp))
     ) {

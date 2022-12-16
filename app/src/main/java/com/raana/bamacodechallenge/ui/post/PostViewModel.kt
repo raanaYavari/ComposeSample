@@ -40,7 +40,6 @@ class PostViewModel @Inject constructor(private val getPostsUseCase: GetPostsUse
 sealed class PostScreenState {
     object Initial : PostScreenState()
     object Loading : PostScreenState()
-    class Error(val throwable: Throwable) : PostScreenState(){
-    }
+    class Error(val throwable: Throwable) : PostScreenState()
     class Success(val posts: List<Post>) : PostScreenState()
 }

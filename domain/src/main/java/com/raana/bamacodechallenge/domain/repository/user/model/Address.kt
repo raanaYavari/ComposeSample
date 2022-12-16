@@ -12,4 +12,8 @@ data class Address(
     @SerialName("city") val city: String,
     @SerialName("zipcode") val zipcode: String,
     @SerialName("geo") val geo: Geo,
-)
+) {
+    override fun toString(): String {
+        return "$city, $suite, $street, $zipcode"
+    }
+}
