@@ -9,6 +9,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -16,6 +17,7 @@ import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.raana.bamacodechallenge.R
 import com.raana.bamacodechallenge.domain.repository.user.model.User
+import com.raana.bamacodechallenge.ui.component.LoadingAnimation
 import com.raana.bamacodechallenge.ui.component.MyTopAppBar
 import com.raana.bamacodechallenge.ui.post.PostItem
 import com.raana.bamacodechallenge.ui.post.PostScreenState
@@ -45,11 +47,26 @@ fun UserScreen(
         SwipeRefresh(state = swipeRefreshState, onRefresh = {
             viewModel.getUsers()
         }) {
-            if (state is UserViewModel.UserScreenState.Success) {
-                val currentState = state as UserViewModel.UserScreenState.Success
-                LazyColumn {
-                    itemsIndexed(currentState.users) { index, user ->
-                        UserItem(user)
+            when (state) {
+                is UserViewModel.UserScreenState.Error -> {
+
+                }
+                UserViewModel.UserScreenState.Initial -> {
+
+                }
+                UserViewModel.UserScreenState.Loading -> {
+                    Box(
+                        modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
+                    ) {
+                        LoadingAnimation()
+                    }
+                }
+                is UserViewModel.UserScreenState.Success -> {
+                    val currentState = state as UserViewModel.UserScreenState.Success
+                    LazyColumn {
+                        itemsIndexed(currentState.users) { index, user ->
+                            UserItem(user)
+                        }
                     }
                 }
             }

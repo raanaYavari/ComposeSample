@@ -13,6 +13,7 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -21,6 +22,7 @@ import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.raana.bamacodechallenge.R
 import com.raana.bamacodechallenge.domain.repository.post.model.Post
+import com.raana.bamacodechallenge.ui.component.LoadingAnimation
 import com.raana.bamacodechallenge.ui.component.MyTopAppBar
 import com.raana.bamacodechallenge.ui.theme.*
 import kotlinx.coroutines.CoroutineScope
@@ -47,11 +49,24 @@ fun PostScreen(
         SwipeRefresh(state = swipeRefreshState, onRefresh = {
             viewModel.getPosts()
         }) {
-            if (state is PostScreenState.Success) {
-                val currentState = state as PostScreenState.Success
-                LazyColumn {
-                    itemsIndexed(currentState.posts) { index, post ->
-                        PostItem(post)
+            when (state) {
+                is PostScreenState.Success -> {
+                    val currentState = state as PostScreenState.Success
+                    LazyColumn {
+                        itemsIndexed(currentState.posts) { index, post ->
+                            PostItem(post)
+                        }
+                    }
+                }
+                is PostScreenState.Error -> TODO()
+                PostScreenState.Initial -> {
+
+                }
+                PostScreenState.Loading -> {
+                    Box(
+                        modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
+                    ) {
+                        LoadingAnimation()
                     }
                 }
             }
