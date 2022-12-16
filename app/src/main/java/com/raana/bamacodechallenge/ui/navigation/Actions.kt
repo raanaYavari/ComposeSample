@@ -4,25 +4,25 @@ import androidx.navigation.NavHostController
 
 class Actions(navController: NavHostController) {
     val navigateToSplash: () -> Unit = {
-        navController.navigate(Screens.SPLASH_ROUTE) {
-            popUpTo(Screens.SPLASH_ROUTE) { inclusive = true }
+        navController.navigate(Screen.Splash.toString()) {
+            popUpTo(Screen.Splash.toString()) { inclusive = true }
         }
     }
 
     val navigateToHome: () -> Unit = {
-        navController.navigate(Screens.HOME_ROUTE) {
-            popUpTo(Screens.SPLASH_ROUTE) { inclusive = true }
+        navController.navigate(Screen.User.toString()) {
+            popUpTo(Screen.User.toString()) { inclusive = true }
         }
     }
     val navigateToPost: () -> Unit = {
-        navController.navigate(Screens.POST_ROUTE) {
-            popUpTo(Screens.SPLASH_ROUTE) { inclusive = true }
+        navController.navigate(Screen.Post.toString()) {
+            popUpTo(Screen.Post.toString()) { inclusive = true }
         }
     }
 
     val navigateToDetail: (id: String) -> Unit = { id: String ->
         navController.currentBackStackEntry?.arguments?.putString("id", id)
-        navController.navigate("${Screens.POST_ROUTE}/$id")
+        navController.navigate("${Screen.Detail}/$id")
     }
 
     val backPress: () -> Unit = {

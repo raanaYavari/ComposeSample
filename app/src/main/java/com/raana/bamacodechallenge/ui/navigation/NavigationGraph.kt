@@ -5,28 +5,29 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.raana.bamacodechallenge.ui.navigation.Screens.DETAIL_ROUTE
-import com.raana.bamacodechallenge.ui.navigation.Screens.HOME_ROUTE
-import com.raana.bamacodechallenge.ui.navigation.Screens.POST_ROUTE
-import com.raana.bamacodechallenge.ui.navigation.Screens.SPLASH_ROUTE
+import com.raana.bamacodechallenge.ui.post.PostScreen
+import com.raana.bamacodechallenge.ui.user.UserScreen
 import kotlinx.coroutines.CoroutineScope
 
 
-object Screens {
-    const val SPLASH_ROUTE = "splash"
-    const val HOME_ROUTE = "home"
-    const val DETAIL_ROUTE = "detail"
-    const val POST_ROUTE = "post"
+sealed class Screen(val route: String)  {
+    object User : Screen("user")
+    object Post : Screen("post")
+    object Splash : Screen("splash"){}
+    object Detail : Screen("detail")
+    
 }
+
 
 @Composable
 fun NavigationGraph(
     navController: NavHostController = rememberNavController(),
-    startDestination: String = SPLASH_ROUTE,
+    startDestination: String = Screen.Post.route,
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     scaffoldState: ScaffoldState = rememberScaffoldState(),
 ) {
@@ -34,20 +35,19 @@ fun NavigationGraph(
     val actions = remember(navController) { Actions(navController) }
 
     NavHost(
-        navController = navController,
-        startDestination = startDestination
+        navController = navController, startDestination = startDestination
     ) {
-        composable(SPLASH_ROUTE) {
+        composable(Screen.Splash.route) {
 
         }
-        composable(HOME_ROUTE) {
-
+        composable(Screen.User.route) {
+            UserScreen(coroutineScope = coroutineScope, viewModel = hiltViewModel())
         }
-        composable(POST_ROUTE) {
-
+        composable(Screen.Post.route) {
+            PostScreen(coroutineScope = coroutineScope, viewModel = hiltViewModel())
         }
         composable(
-            "${DETAIL_ROUTE}/{id}",
+            "${Screen.Detail}/{id}",
         ) {
 
         }
