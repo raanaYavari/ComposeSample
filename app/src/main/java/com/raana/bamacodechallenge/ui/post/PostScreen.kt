@@ -19,7 +19,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import com.raana.bamacodechallenge.R
 import com.raana.bamacodechallenge.domain.repository.post.model.Post
+import com.raana.bamacodechallenge.ui.component.MyTopAppBar
 import com.raana.bamacodechallenge.ui.theme.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -33,7 +35,7 @@ fun PostScreen(
     val state by viewModel.state.collectAsState()
 
     Scaffold(scaffoldState = scaffoldState, topBar = {
-
+        MyTopAppBar(title = stringResource(id = R.string.post))
     }, snackbarHost = {
         SnackbarHost(hostState = it) {
             Snackbar(
@@ -62,9 +64,9 @@ fun PostItem(post: Post) {
     Column(
         modifier = Modifier
             .padding(8.dp)
-            .background(color = surfaceColor, shape = RoundedCornerShape(4.dp)),
-        verticalArrangement = Arrangement.SpaceBetween
+            .background(color = surfaceColor, shape = RoundedCornerShape(4.dp))
     ) {
+        Spacer(modifier = Modifier.height(8.dp))
         Text(
             modifier = Modifier
                 .padding(horizontal = 8.dp),
@@ -78,6 +80,6 @@ fun PostItem(post: Post) {
             text = post.body,
             style = MaterialTheme.typography.body1
         )
-
+        Spacer(modifier = Modifier.height(8.dp))
     }
 }
