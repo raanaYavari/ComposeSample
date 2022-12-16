@@ -2,17 +2,17 @@ package com.raana.bamacodechallenge.data.base
 
 import retrofit2.Response
 
-suspend fun <T> getResult(call: suspend () -> Response<T>): CustomResponse<T> {
+suspend fun <T> getResult(call: suspend () -> Response<T>): Result<T> {
     return try {
         val response = call()
-        if (response.isSuccessful) {
-            val body = response.body()
-            CustomResponse.success(body)
+        val body = response.body()
+        if (response.isSuccessful && body != null) {
+            Result.success(body)
         } else {
-            throw Exception(response.message())
+            Result.failure(Throwable(response.message()))
         }
     } catch (e: Exception) {
-        return CustomResponse.fail(e.message)
+        Result.failure(Throwable(e))
     }
 }
 
