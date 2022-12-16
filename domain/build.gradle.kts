@@ -1,7 +1,9 @@
 plugins {
-    kotlin("kapt")
-    kotlin("android")
     id("com.android.library")
+    kotlin("android")
+    kotlin("kapt")
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.6.10"
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -16,7 +18,7 @@ android {
         consumerProguardFiles("consumer-rules.pro")
     }
     buildTypes {
-        release {
+        getByName("release")  {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -25,8 +27,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = "11"
     }
 }
 
