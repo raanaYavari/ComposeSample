@@ -15,6 +15,10 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
+private val json = Json {
+    ignoreUnknownKeys = true
+}
+
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
@@ -49,9 +53,8 @@ class NetworkModule {
             )
             .baseUrl(baseUrl)
             .addConverterFactory(
-                Json.asConverterFactory("application/json".toMediaType())
-            )
-            .build()
+                json.asConverterFactory("application/json".toMediaType()))
+                    .build()
+                }
 
-    }
 }
