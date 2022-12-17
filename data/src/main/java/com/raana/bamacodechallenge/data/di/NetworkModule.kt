@@ -1,7 +1,7 @@
 package com.raana.bamacodechallenge.data.di
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.raana.bamacodechallenge.data.baseUrl
+import com.raana.bamacodechallenge.data.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -51,7 +51,7 @@ class NetworkModule {
                 okHttpClient.newBuilder()
                     .build()
             )
-            .baseUrl(baseUrl)
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(
                 json.asConverterFactory("application/json".toMediaType()))
                     .build()
