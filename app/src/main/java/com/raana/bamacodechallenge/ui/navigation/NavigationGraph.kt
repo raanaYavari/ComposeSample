@@ -7,20 +7,23 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.raana.bamacodechallenge.ui.post.PostScreen
+import com.raana.bamacodechallenge.ui.post_detail.PostDetailScreen
 import com.raana.bamacodechallenge.ui.user.UserScreen
 import kotlinx.coroutines.CoroutineScope
 
 
-sealed class Screen(val route: String)  {
+sealed class Screen(val route: String) {
     object User : Screen("user")
     object Post : Screen("post")
-    object Splash : Screen("splash"){}
+    object Splash : Screen("splash") {}
     object Detail : Screen("detail")
-    
+
 }
 
 
@@ -44,11 +47,28 @@ fun NavigationGraph(
             UserScreen(coroutineScope = coroutineScope, viewModel = hiltViewModel())
         }
         composable(Screen.Post.route) {
-            PostScreen(coroutineScope = coroutineScope, viewModel = hiltViewModel())
+            PostScreen(
+                coroutineScope = coroutineScope,
+                viewModel = hiltViewModel(),
+                navigateToDetail = actions.navigateToDetail
+            )
         }
         composable(
             "${Screen.Detail}/{id}",
-        ) {
+            arguments = listOf(
+                navArgument("id") {
+                    nullable = false
+                    type = NavType.IntType
+                }
+            )
+        ) { backStackEntry ->
+            backStackEntry.arguments?.getInt("id")?.let {
+                PostDetailScreen(
+                    coroutineScope = coroutineScope,
+                    viewModel = hiltViewModel(),
+                    postId = it,
+                )
+            }
 
         }
     }

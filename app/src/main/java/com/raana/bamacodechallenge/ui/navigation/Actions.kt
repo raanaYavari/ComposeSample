@@ -20,8 +20,7 @@ class Actions(navController: NavHostController) {
         }
     }
 
-    val navigateToDetail: (id: String) -> Unit = { id: String ->
-        navController.currentBackStackEntry?.arguments?.putString("id", id)
+    val navigateToDetail: (id: Int) -> Unit = { id: Int ->
         navController.navigate("${Screen.Detail}/$id")
     }
 

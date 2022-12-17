@@ -4,4 +4,5 @@
 
     <string name="user">User</string>
     <string name="post">Post</string>
+    <string name="post_detail">Post Detail</string>
 </resources>

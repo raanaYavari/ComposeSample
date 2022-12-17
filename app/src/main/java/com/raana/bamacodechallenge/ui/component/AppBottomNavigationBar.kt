@@ -53,29 +53,32 @@ fun AppBottomNavigationBar(
         NavigationItem.Post,
         NavigationItem.User,
     )
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
 
-    BottomNavigation(
-        modifier = modifier,
-    ) {
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoute = navBackStackEntry?.destination?.route
-        items.forEach { item ->
-            BottomNavigationItem(
-                selected = currentRoute == item.screen.route,
-                selectedContentColor = white,
-                unselectedContentColor = white.copy(0.4f),
-                onClick = { onNavigationSelected(item.screen) },
-                label = {
-                    Text(text = stringResource(item.labelResId))
-                },
-                icon = {
-                    Icon(
-                        imageVector = item.icon,
-                        contentDescription = stringResource(item.labelResId)
-                    )
-                },
-                alwaysShowLabel = false,
-            )
+    if(items.map { it.screen.route }.contains(currentRoute)){
+        BottomNavigation(
+            modifier = modifier,
+        ) {
+            items.forEach { item ->
+                BottomNavigationItem(
+                    selected = currentRoute == item.screen.route,
+                    selectedContentColor = white,
+                    unselectedContentColor = white.copy(0.4f),
+                    onClick = { onNavigationSelected(item.screen) },
+                    label = {
+                        Text(text = stringResource(item.labelResId))
+                    },
+                    icon = {
+                        Icon(
+                            imageVector = item.icon,
+                            contentDescription = stringResource(item.labelResId)
+                        )
+                    },
+                    alwaysShowLabel = false,
+                )
+            }
         }
     }
+
 }
