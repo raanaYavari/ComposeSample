@@ -2,10 +2,8 @@ package com.raana.bamacodechallenge.ui.user
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.raana.bamacodechallenge.domain.repository.post.model.Post
 import com.raana.bamacodechallenge.domain.repository.user.model.User
 import com.raana.bamacodechallenge.domain.usecase.user.GetUsersUseCase
-import com.raana.bamacodechallenge.ui.post.PostScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

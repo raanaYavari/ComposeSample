@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.raana.bamacodechallenge.domain.repository.post.model.Post
 import com.raana.bamacodechallenge.domain.usecase.post.GetPostDetailUseCase
-import com.raana.bamacodechallenge.ui.post.PostScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -20,7 +19,7 @@ class PostDetailViewModel @Inject constructor(private val useCase: GetPostDetail
     val state = _state.asStateFlow()
 
     fun getPostDetail(id: Int) {
-        PostDetailScreenState.Loading
+        _state.update { PostDetailScreenState.Loading }
         viewModelScope.launch {
             useCase.invoke(id).fold(
                 onSuccess = { res ->

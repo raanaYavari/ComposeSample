@@ -60,14 +60,6 @@ dependencies {
     implementation Dependencies.ANDROIDX_ACTIVITY
     implementation Dependencies.HILT_ANDROID
     implementation Dependencies.HILT_NAVIGATION
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
-    implementation 'androidx.activity:activity-compose:1.3.1'
-    implementation "androidx.compose.ui:ui:$compose_ui_version"
-    implementation "androidx.compose.ui:ui-tooling-preview:$compose_ui_version"
-    implementation 'androidx.compose.material:material:1.1.1'
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
-    debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
-    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
     kapt Dependencies.HILT_COMPILER
     implementation Dependencies.STARTUP
     implementation Dependencies.COROUTINE_CORE

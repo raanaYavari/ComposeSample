@@ -5,4 +5,5 @@
     <string name="user">User</string>
     <string name="post">Post</string>
     <string name="post_detail">Post Detail</string>
+    <string name="error_message">An error occurred!</string>
 </resources>

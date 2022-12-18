@@ -19,6 +19,7 @@ import com.raana.bamacodechallenge.R
 import com.raana.bamacodechallenge.domain.repository.user.model.User
 import com.raana.bamacodechallenge.ui.component.LoadingAnimation
 import com.raana.bamacodechallenge.ui.component.MyTopAppBar
+import com.raana.bamacodechallenge.ui.component.NetworkFailure
 import com.raana.bamacodechallenge.ui.post.PostItem
 import com.raana.bamacodechallenge.ui.post.PostScreenState
 import com.raana.bamacodechallenge.ui.theme.red
@@ -29,7 +30,6 @@ import kotlinx.coroutines.CoroutineScope
 @Composable
 fun UserScreen(
     scaffoldState: ScaffoldState = rememberScaffoldState(),
-    coroutineScope: CoroutineScope,
     viewModel: UserViewModel
 ) {
     val state by viewModel.state.collectAsState()
@@ -49,7 +49,10 @@ fun UserScreen(
         }) {
             when (state) {
                 is UserViewModel.UserScreenState.Error -> {
-
+                    val currentState = state as UserViewModel.UserScreenState.Error
+                    NetworkFailure(Modifier.fillMaxSize(),currentState.throwable.message){
+                        viewModel.getUsers()
+                    }
                 }
                 UserViewModel.UserScreenState.Initial -> {
 
