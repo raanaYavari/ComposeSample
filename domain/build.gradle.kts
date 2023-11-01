@@ -7,12 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.raana.bamacodechallenge.domain"
+    namespace = "com.raana.composeSample.domain"
     compileSdk = Config.COMPILE_SDK
 
     defaultConfig {
         minSdk = Config.MIN_SDK
-        targetSdk = Config.TARGET_SDK
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -37,8 +36,8 @@ android {
 
 dependencies {
 
-    implementation(Dependencies.HILT_ANDROID)
-    kapt(Dependencies.HILT_COMPILER)
-    implementation(Dependencies.KOTLIN_X_SERIALIZATION)
-    implementation(Dependencies.COROUTINE_CORE)
+    implementation(Dependencies1.HILT_ANDROID)
+    kapt(Dependencies1.HILT_COMPILER)
+    implementation(Dependencies1.KOTLIN_X_SERIALIZATION)
+    implementation(Dependencies1.COROUTINE_CORE)
 }

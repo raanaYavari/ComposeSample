@@ -12,7 +12,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Bama Code Challenge"
+rootProject.name = "Compose Sample"
 include ':app'
 include ':data'
 include ':domain'

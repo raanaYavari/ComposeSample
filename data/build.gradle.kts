@@ -7,12 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.raana.bamacodechallenge.data"
+    namespace = "com.raana.composeSample.data"
     compileSdk = Config.COMPILE_SDK
-
+    android.buildFeatures.buildConfig = true
     defaultConfig {
         minSdk = Config.MIN_SDK
-        targetSdk = Config.TARGET_SDK
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -46,19 +45,19 @@ android {
 }
 
 dependencies {
-    implementation(Dependencies.ANDROIDX_CORE)
-    implementation(Dependencies.ANDROIDX_APPCOMPACT)
-    implementation(Dependencies.MATERIAL)
-    implementation(Dependencies.HILT_ANDROID)
+    implementation(Dependencies1.ANDROIDX_CORE)
+    implementation(Dependencies1.ANDROIDX_APPCOMPACT)
+    implementation(Dependencies1.MATERIAL)
+    implementation(Dependencies1.HILT_ANDROID)
 
-    kapt(Dependencies.HILT_COMPILER)
-    implementation(Dependencies.RETROFIT)
-    implementation(Dependencies.RETROFIT_CONVERTER_SCALARS)
-    implementation(Dependencies.LOGGING_INTERCEPTOR)
-    implementation(Dependencies.COROUTINE_CORE)
-    implementation(Dependencies.COROUTINE_ANDROID)
-    implementation(Dependencies.KOTLIN_X_SERIALIZATION)
-    implementation(Dependencies.KOTLIN_SERIALIZATION_CONVERTOR)
-    implementation(Dependencies.DATA_STORE)
+    kapt(Dependencies1.HILT_COMPILER)
+    implementation(Dependencies1.RETROFIT)
+    implementation(Dependencies1.RETROFIT_CONVERTER_SCALARS)
+    implementation(Dependencies1.LOGGING_INTERCEPTOR)
+    implementation(Dependencies1.COROUTINE_CORE)
+    implementation(Dependencies1.COROUTINE_ANDROID)
+    implementation(Dependencies1.KOTLIN_X_SERIALIZATION)
+    implementation(Dependencies1.KOTLIN_SERIALIZATION_CONVERTOR)
+    implementation(Dependencies1.DATA_STORE)
     api(project(":domain"))
 }

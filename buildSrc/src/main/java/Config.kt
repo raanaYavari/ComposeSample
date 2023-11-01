@@ -1,9 +1,8 @@
 object Config {
-    const val APP_NAME = "Bama Code Challenge"
-    const val APPLICATION_ID = "com.raana.bamacodechallenge"
+    const val APP_NAME = "Compose Sample"
+    const val APPLICATION_ID = "com.raana.composeSample"
     const val COMPILE_SDK = 31
     const val MIN_SDK = 23
-    const val TARGET_SDK = 31
     const val VERSION_MAJOR = 1
     const val VERSION_MINOR = 5
     const val VERSION_PATH = 1

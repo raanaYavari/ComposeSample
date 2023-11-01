@@ -1,4 +1,4 @@
-object Dependencies {
+object Dependencies1 {
 
     const val ANDROIDX_APPCOMPACT = "androidx.appcompat:appcompat:${Version.ANDROIDX_APPCOMPACT}"
     const val ANDROIDX_ACTIVITY = "androidx.activity:activity-ktx:${Version.ANDROIDX_ACTIVITY}"
